@@ -1,3 +1,5 @@
 jupyterlab
 ruff
 pytest
+seaborn
+pytest-cov

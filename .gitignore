@@ -2,3 +2,5 @@ build/
 env/
 *.egg-info/
 *.ipynb_checkpoints
+*.coverage
+*.pyc

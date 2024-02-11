@@ -20,6 +20,8 @@ rebuild:
 purge: clear
 	-@rm -rf env
 
+test:
+	env/bin/pytest
 
 lint:
 	env/bin/ruff .
