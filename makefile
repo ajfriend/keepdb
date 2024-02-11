@@ -12,6 +12,11 @@ clear:
 	-@find . -type f -name '*.pyc' | xargs rm -r
 	-@find . -type d -name '*.ipynb_checkpoints' | xargs rm -r
 
+
+rebuild:
+	env/bin/pip uninstall -y keepdb
+	env/bin/pip install .
+
 purge: clear
 	-@rm -rf env
 
