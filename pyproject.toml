@@ -1,0 +1,17 @@
+[project]
+name = 'keepdb'
+version = '0.1.0'
+description = 'A sample Python project'
+readme = 'readme.md'
+authors = [
+    {name = 'AJ Friend', email = 'ajfriend@gmail.com'}
+]
+requires-python = '>= 3.8'
+dependencies = [
+    'pandas',
+    'pyarrow',
+]
+
+[build-system]
+requires = ['setuptools>=61.0']
+build-backend = 'setuptools.build_meta'
