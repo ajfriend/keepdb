@@ -1,8 +1,8 @@
 from ._version import __version__
 
-from .util import (
-	dfs_to_zip,
-	zip_to_dfs,
+from .util.compare import (
 	are_dfs_equal,
 	are_df_dicts_equal,
 )
+
+from . import to_from
