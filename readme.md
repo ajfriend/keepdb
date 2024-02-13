@@ -26,10 +26,7 @@ and read them back like:
 ```python
 import keepdb as kd
 
-dfs = {
-    'diamonds': df_diamonds,
-    'car_crashes': df_car_crashes,
-}
+dfs = {'diamonds': df_diamonds, 'car_crashes': df_car_crashes}
 
 kd.to_zip('test_file.zip', dfs)
 dfs2 = kd.from_zip('test_file.zip')
