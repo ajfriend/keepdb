@@ -2,9 +2,9 @@ from ..util.convert import pd2pa, pa2pd
 from . import pa
 
 
-def to_zip(filename, dfs):
+def to_zip(zip_file, dfs):
     """ Store a dict of dataframes as a zip archive containing parquet files for each
-    filename: str
+    zip_file: str
     dfs: dict[str, pd.DataFrame]
     """
     tables = {
@@ -12,11 +12,11 @@ def to_zip(filename, dfs):
         for k,v in dfs.items()
     }
 
-    pa.dfs_to_zip(filename, tables)
+    pa.to_zip(zip_file, tables)
 
 
-def from_zip(filename):
-    tables = pa.zip_to_dfs(filename)
+def from_zip(zip_file):
+    tables = pa.from_zip(zip_file)
     dfs = {
         k: pa2pd(v)
         for k,v in tables.items()

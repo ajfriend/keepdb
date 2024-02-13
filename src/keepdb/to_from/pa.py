@@ -18,7 +18,7 @@ def without_suffix(name, suffix='.parquet'):
     return name[:-n]
 
 
-def dfs_to_zip(zip_file, tables):
+def to_zip(zip_file, tables):
     """ Store a dict of dataframes as a zip archive containing parquet files for each
     zip_file: str
     tables: dict[str, pa.Table]
@@ -30,7 +30,7 @@ def dfs_to_zip(zip_file, tables):
                 table_to_parquet_bytes(table),
             )
 
-def zip_to_dfs(zip_file):
+def from_zip(zip_file):
     tables = {}
     with zipfile.ZipFile(zip_file, 'r') as z:
         for file_name in z.namelist():
