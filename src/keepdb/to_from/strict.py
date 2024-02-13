@@ -1,27 +1,46 @@
 import zipfile
 import io
-import pandas as pd
+import pyarrow.parquet as pq
+
+"""
+this should be just pyarrow to pyarrow. pytable to pytable. super strict.
+use this as the tool to save the less-strict case.
+"""
+
+def table_to_parquet_bytes(table):
+    b = io.BytesIO()
+    pq.write_table(table, b, compression='brotli')
+    return b.getvalue()
+
+def parquet_bytes_to_table(b):
+    b = io.BytesIO(b)
+    return pq.read_table(b)
+
+def without_suffix(name, suffix='.parquet'):
+    assert name.endswith(suffix)
+    n = len(suffix)
+    return name[:-n]
 
 
-def dfs_to_zip(filename, dfs):
+def dfs_to_zip(zip_filename, tables):
     """ Store a dict of dataframes as a zip archive containing parquet files for each
-    filename: str
-    dfs: dict[str, pd.DataFrame]
+    zip_filename: str
+    tables: dict[str, pa.Table]
     """
-    # note: not sure the zip compression does much on top of the parquet compression. maybe drop?
-    with zipfile.ZipFile(filename, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
-        for df_name, df in dfs.items():
-            b = df.to_parquet(compression='brotli', index=False, engine='pyarrow')
-            z.writestr(f'{df_name}.parquet', b)
+    with zipfile.ZipFile(zip_filename, 'w') as z:
+        for table_name, table in tables.items():
+            z.writestr(
+                f'{table_name}.parquet',
+                table_to_parquet_bytes(table),
+            )
 
-def zip_to_dfs(filename):
-    out = {}
-    with zipfile.ZipFile(filename, 'r') as zf:
-        for name in zf.namelist():
-            data = zf.read(name)
-            data = io.BytesIO(data)
-            df = pd.read_parquet(data, dtype_backend='numpy_nullable')
-            assert name.endswith('.parquet')
-            name = name[:-8]
-            out[name] = df
-    return out
+def zip_to_dfs(zip_filename):
+    tables = {}
+    with zipfile.ZipFile(zip_filename, 'r') as z:
+        for file_name in z.namelist():
+            b = z.read(file_name)
+            table = parquet_bytes_to_table(b)
+            table_name = without_suffix(file_name, '.parquet')
+            tables[table_name] = table
+
+    return tables
