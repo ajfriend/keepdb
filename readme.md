@@ -31,8 +31,8 @@ See more details in [notebooks/examples.ipynb](notebooks/examples.ipynb).
 [Cunningham's Law]: https://en.wikipedia.org/wiki/Ward_Cunningham#%22Cunningham's_Law%22
 
 This repo is an attempt to exploit
-[Cunningham's Law]: "The best way to get the right answer on the Internet
-is not to ask a question; it's to post the wrong answer."
+[Cunningham's Law]: "**The best way to get the right answer on the Internet
+is not to ask a question; it's to post the wrong answer.**"
 
 I haven't found a better solution for storing collections of tabular data
 (relational databases) in a single file or data structure that:
