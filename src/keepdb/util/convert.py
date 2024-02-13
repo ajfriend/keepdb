@@ -3,15 +3,13 @@ import pyarrow as pa
 
 
 def pd2pa(x):
-    if isinstance(x, pa.Table):
-        return x
-    else:
-        return pa.Table.from_pandas(x, preserve_index=False)
+    #  todo: add check that indices are not allowed
+    return pa.Table.from_pandas(x, preserve_index=False)
 
-def pa2pd(x):
-    if isinstance(x, pd.DataFrame):
-        return x
-    elif isinstance(x, pa.Table):
-        return x.to_pandas()
+def pa2pd(x, use_arrow_dtypes=False):
+    assert isinstance(x, pa.Table)
+
+    if use_arrow_dtypes:
+        return x.to_pandas(types_mapper=pd.ArrowDtype)
     else:
-        raise ValueError(f'Unrecognized type: {type(x)}')
+        return x.to_pandas()

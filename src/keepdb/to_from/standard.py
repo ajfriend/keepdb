@@ -1,6 +1,5 @@
-import zipfile
-import io
-import pandas as pd
+from ..util.convert import pd2pa, pa2pd
+from . import strict
 
 
 def dfs_to_zip(filename, dfs):
@@ -8,20 +7,19 @@ def dfs_to_zip(filename, dfs):
     filename: str
     dfs: dict[str, pd.DataFrame]
     """
-    # note: not sure the zip compression does much on top of the parquet compression. maybe drop?
-    with zipfile.ZipFile(filename, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
-        for df_name, df in dfs.items():
-            b = df.to_parquet(compression='brotli', index=False, engine='pyarrow')
-            z.writestr(f'{df_name}.parquet', b)
+    tables = {
+        k: pd2pa(v)
+        for k,v in dfs.items()
+    }
 
-def zip_to_dfs(filename):
-    out = {}
-    with zipfile.ZipFile(filename, 'r') as zf:
-        for name in zf.namelist():
-            data = zf.read(name)
-            data = io.BytesIO(data)
-            df = pd.read_parquet(data, dtype_backend='numpy_nullable')
-            assert name.endswith('.parquet')
-            name = name[:-8]
-            out[name] = df
-    return out
+    strict.dfs_to_zip(filename, tables)
+
+
+def zip_to_dfs(filename, use_arrow_dtypes=False):
+    tables = strict.zip_to_dfs(filename)
+    dfs = {
+        k: pa2pd(v, use_arrow_dtypes)
+        for k,v in tables.items()
+    }
+
+    return dfs

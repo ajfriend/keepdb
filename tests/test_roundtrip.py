@@ -16,13 +16,9 @@ def test_filename_input():
 
 	with tempfile.TemporaryFile() as f:
 		keepdb.to_from.standard.dfs_to_zip(f, dfict)
-		dfict2 = keepdb.to_from.standard.zip_to_dfs(f)
+		dfict2 = keepdb.to_from.standard.zip_to_dfs(f, use_arrow_dtypes=False)
 
-		keepdb.are_df_dicts_equal(dfict, dfict2, check_dtype=False)
-
-		with pytest.raises(AssertionError, match='Attribute "dtype" are different'):
-			keepdb.are_df_dicts_equal(dfict, dfict2, check_dtype=True)
-
+		keepdb.are_df_dicts_equal(dfict, dfict2)
 
 
 def test_file_object_input():
@@ -40,7 +36,4 @@ def test_file_object_input():
 		keepdb.to_from.standard.dfs_to_zip(f.name, dfict)
 		dfict2 = keepdb.to_from.standard.zip_to_dfs(f.name)
 
-		keepdb.are_df_dicts_equal(dfict, dfict2, check_dtype=False)
-
-		with pytest.raises(AssertionError, match='Attribute "dtype" are different'):
-			keepdb.are_df_dicts_equal(dfict, dfict2, check_dtype=True)
+		keepdb.are_df_dicts_equal(dfict, dfict2)
