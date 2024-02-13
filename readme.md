@@ -25,4 +25,4 @@ kd.to_zip(filename, dfs)
 dfs2 = kd.from_zip(filename)
 ```
 
-See more details in [notebooks/examples.ipynb].
+See more details in [notebooks/examples.ipynb](notebooks/examples.ipynb).
