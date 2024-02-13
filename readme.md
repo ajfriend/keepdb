@@ -20,7 +20,8 @@ df_diamonds = sns.load_dataset('diamonds')
 df_car_crashes = sns.load_dataset('car_crashes')
 ```
 
-You can save both DataFrames to `test_file.zip` and read them back like:
+You can use `keepdb` to save both DataFrames to `test_file.zip`
+and read them back like:
 
 ```python
 import keepdb as kd
