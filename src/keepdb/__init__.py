@@ -7,7 +7,7 @@ from .util.compare import (
 
 from .util.convert import pa2pd, pd2pa
 
-from . import to_from
+from .to_from import pa, pd
 from .to_from.pd import (
 	to_zip,
 	from_zip,
