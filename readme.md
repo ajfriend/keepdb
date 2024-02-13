@@ -14,7 +14,7 @@ pip install git+https://github.com/ajfriend/keepdb
 Assume you have Pandas DataFrames like `df_diamonds` and `df_car_crashes`:
 
 ```python
-# using seaborn to provide example DataFrames
+# Using seaborn to provide example DataFrames
 import seaborn as sns
 df_diamonds = sns.load_dataset('diamonds')
 df_car_crashes = sns.load_dataset('car_crashes')
@@ -24,12 +24,13 @@ You can use `keepdb` to save both DataFrames to `test_file.zip`
 and read them back like:
 
 ```python
-import keepdb as kd
+import keepdb
 
 dfs = {'diamonds': df_diamonds, 'car_crashes': df_car_crashes}
 
-kd.to_zip('test_file.zip', dfs)
-dfs2 = kd.from_zip('test_file.zip')
+f = 'test_file.zip'
+keepdb.to_zip(f, dfs)
+dfs2 = keepdb.from_zip(f)
 ```
 
 See more details in [notebooks/examples.ipynb](notebooks/examples.ipynb).
@@ -38,7 +39,7 @@ See more details in [notebooks/examples.ipynb](notebooks/examples.ipynb).
 
 [Cunningham's Law]: https://en.wikipedia.org/wiki/Ward_Cunningham#%22Cunningham's_Law%22
 
-This repo is an attempt to exploit
+This repo is an attempt to invoke
 [Cunningham's Law]: "**The best way to get the right answer on the Internet
 is not to ask a question; it's to post the wrong answer.**"
 
