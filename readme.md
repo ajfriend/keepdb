@@ -27,8 +27,8 @@ and read them back like:
 import keepdb
 
 dfs = {'diamonds': df_diamonds, 'car_crashes': df_car_crashes}
-
 f = 'test_file.zip'
+
 keepdb.to_zip(f, dfs)
 dfs2 = keepdb.from_zip(f)
 ```
