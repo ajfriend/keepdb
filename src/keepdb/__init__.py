@@ -6,7 +6,7 @@ from .util.compare import (
 )
 
 from . import to_from
-from .to_from.standard import (
+from .to_from.pd import (
 	to_zip,
 	from_zip,
 )
