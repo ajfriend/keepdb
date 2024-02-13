@@ -11,13 +11,23 @@ pip install git+https://github.com/ajfriend/keepdb
 
 ## Quickstart
 
+Assume you have Pandas DataFrames like `df_diamonds` and `df_car_crashes`:
+
+```python
+# using seaborn to provide example DataFrames
+import seaborn as sns
+df_diamonds = sns.load_dataset('diamonds')
+df_car_crashes = sns.load_dataset('car_crashes')
+```
+
+You can save both DataFrames to `test_file.zip` and read them back like:
+
 ```python
 import keepdb as kd
-import seaborn as sns
 
 dfs = {
-    'diamonds':    sns.load_dataset('diamonds'),
-    'car_crashes': sns.load_dataset('car_crashes'),
+    'diamonds': df_diamonds,
+    'car_crashes': df_car_crashes,
 }
 
 kd.to_zip('test_file.zip', dfs)
