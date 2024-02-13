@@ -8,7 +8,13 @@ organizational level up: collections of tables like in a relational database.
 I'm sharing this repo in the spirit of [Cunningham's Law]: "The best way to get the right answer on the Internet is not to ask a question; it's to post the wrong answer." I have a problem and can't find a great answer, so I'm posting my attempt in the hope that someone will come along and point me to something better.
 
 
-## Goals
+## benefits
+
+- compression
+- binary format (sometimes) helps alleviate type conversion issues
+
+
+## development Goals
 
 - build a modern (uses `pyproject.toml` instead of `setup.py`), well-organized, python project
 	- try out latest patterns for use in other projects

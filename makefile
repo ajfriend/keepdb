@@ -9,8 +9,9 @@ clear:
 	-@rm -rf annotations
 	-@rm -rf .pytest_cache tests/__pycache__ __pycache__ _skbuild dist .coverage build
 	-@find . -type d -name '*.egg-info' | xargs rm -r
-	-@find . -type f -name '*.pyc' | xargs rm -r
 	-@find . -type d -name '*.ipynb_checkpoints' | xargs rm -r
+	-@find . -type f -name '*.pyc' | xargs rm -r
+	-@find . -type f -name '*.zip' | xargs rm -r
 
 
 rebuild:
