@@ -20,9 +20,8 @@ dfs = {
     'car_crashes': sns.load_dataset('car_crashes'),
 }
 
-filename = 'test_file.zip'
-kd.to_zip(filename, dfs)
-dfs2 = kd.from_zip(filename)
+kd.to_zip('test_file.zip', dfs)
+dfs2 = kd.from_zip('test_file.zip')
 ```
 
 See more details in [notebooks/examples.ipynb](notebooks/examples.ipynb).
