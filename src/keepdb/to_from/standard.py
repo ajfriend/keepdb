@@ -15,10 +15,10 @@ def to_zip(filename, dfs):
     strict.dfs_to_zip(filename, tables)
 
 
-def from_zip(filename, use_arrow_dtypes=False):
+def from_zip(filename):
     tables = strict.zip_to_dfs(filename)
     dfs = {
-        k: pa2pd(v, use_arrow_dtypes)
+        k: pa2pd(v)
         for k,v in tables.items()
     }
 

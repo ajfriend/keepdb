@@ -2,10 +2,6 @@ import zipfile
 import io
 import pyarrow.parquet as pq
 
-"""
-this should be just pyarrow to pyarrow. pytable to pytable. super strict.
-use this as the tool to save the less-strict case.
-"""
 
 def table_to_parquet_bytes(table):
     b = io.BytesIO()
