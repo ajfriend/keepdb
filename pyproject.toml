@@ -1,7 +1,7 @@
 [project]
 name = 'keepdb'
 version = '0.0.42'
-description = 'A sample Python project'
+description = 'Store and retrieve Pandas DataFrames in a `.zip` of `.parquet` files.'
 readme = 'readme.md'
 authors = [
     {name='AJ Friend', email='ajfriend@gmail.com'}
