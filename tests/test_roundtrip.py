@@ -1,7 +1,6 @@
 import keepdb
 import seaborn as sns
 import tempfile
-import pytest
 
 
 def _get_dfs():
