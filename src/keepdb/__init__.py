@@ -5,7 +5,7 @@ from .util.compare import (
 	are_df_dicts_equal,
 )
 
-from .util.convert import pa2pd, pd2pa
+from .util.convert import pa2pd, pd2pa, canon
 
 from .to_from import pa, pd
 from .to_from.pd import (

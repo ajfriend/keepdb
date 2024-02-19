@@ -1,17 +1,18 @@
-import pandas as pd
 import pyarrow as pa
 
 
-def pd2pa(x):
-    #  todo: add check that indices are not allowed
-    return pa.Table.from_pandas(x, preserve_index=False)
+def pd2pa(df):
+    df = df.convert_dtypes(dtype_backend='pyarrow')
+    return pa.Table.from_pandas(df, preserve_index=False)
 
-def pa2pd(x):
-    assert isinstance(x, pa.Table)
+def pa2pd(table):
+    assert isinstance(table, pa.Table)
 
-    use_arrow_dtypes = False  # revisit
+    df = table.to_pandas()
+    df = df.convert_dtypes(dtype_backend='pyarrow')
 
-    if use_arrow_dtypes:
-        return x.to_pandas(types_mapper=pd.ArrowDtype)
-    else:
-        return x.to_pandas()
+    return df
+
+def canon(df):
+    table = pd2pa(df)
+    return pa2pd(table)

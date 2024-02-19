@@ -1,5 +1,6 @@
 import keepdb
 import seaborn as sns
+import pandas as pd
 import tempfile
 
 
@@ -35,3 +36,19 @@ def test_file_object_input():
 		dfs2 = keepdb.from_zip(f.name)
 
 	assert keepdb.are_df_dicts_equal(dfs, dfs2)
+
+
+def test_canon():
+	from keepdb import canon
+
+	df = pd.DataFrame({
+	    'colA': [1, 2, 3, None],
+	    'colB': ['A', 'B', 'C', None],
+	    'colC': ['aa', 'bb', 'cc', None],
+	})
+	df['colC'] = df['colC'].astype('category')
+
+	df1 = canon(df)
+	df2 = canon(df1)
+
+	assert keepdb.are_dfs_equal(df1, df2)
