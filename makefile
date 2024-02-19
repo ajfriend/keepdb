@@ -25,10 +25,10 @@ test:
 	env/bin/pytest
 
 lint:
-	env/bin/ruff .
+	env/bin/ruff src/ tests/
 
 fix:
-	env/bin/ruff . --fix
+	env/bin/ruff src/ tests/ --fix
 
 lab:
 	env/bin/jupyter lab

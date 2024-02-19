@@ -1,6 +1,6 @@
 [project]
 name = 'keepdb'
-version = '0.0.42'
+version = '0.0.43'
 description = 'Store and retrieve Pandas DataFrames in a `.zip` of `.parquet` files.'
 readme = 'readme.md'
 authors = [
